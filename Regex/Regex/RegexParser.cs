@@ -59,6 +59,7 @@ namespace Regex
                 }
                 transitionsList.Add(sb.ToString());
             }
+            transitionsList.Sort((a,b) => a[0].CompareTo(b[0]));
             return transitionsList;
         }
 
@@ -68,53 +69,78 @@ namespace Regex
             var nodes = InitilizeNodesArray(currNode);
             Dictionary<Node, List<NodeTransition>> newTransitions = new();
 
-            foreach (var node in nodes)
+            foreach(var node in nodes)
             {
-                List<int> visitedNodes = new() { node.Id };
-                var notNullTransitions = new List<NodeTransition>();
-                Stack<Node> nullTtansitions = new();
-                AddTransition(ref notNullTransitions, nullTtansitions,
-                    node, node, ref visitedNodes);
-
-                while (nullTtansitions.Count > 0)
-                {
-                    var nullTransition = nullTtansitions.Pop();
-
-                    AddTransition(ref notNullTransitions, nullTtansitions,
-                        nullTransition, node, ref visitedNodes);
-                }
-                newTransitions.Add(node, notNullTransitions);
+                List<Node> nullNodes = GetNullNodes(node);
+                newTransitions.Add(node, GetTransitions(nullNodes));
             }
+
+            MinimizeStates(newTransitions);
+
             foreach (var node in newTransitions)
-            {
                 node.Key.To = node.Value;
-            }
 
             return currNode;
         }
 
-        private static void AddTransition(ref List<NodeTransition> notNullTransitions,
-            Stack<Node> nullTtansitions, Node CurrNode, Node initialNode, ref List<int> visitedNodes)
+        private static void MinimizeStates(Dictionary<Node, List<NodeTransition>> newTransitions)
         {
-            var currResult = CurrNode.To.GroupBy(x => x.Out);
-            foreach (var transitions in currResult)
-                if (transitions.Key == "")
-                    foreach (var transition in transitions)
-                    {
-                        if (visitedNodes.IndexOf(transition.Node.Id) == -1)
-                        {
-                            visitedNodes.Add(transition.Node.Id);
-                            if (transition.Node.IsEnd)
-                            {
-                                initialNode.IsEnd = true;
-                                CurrNode.IsEnd = true;
-                            }
-                            nullTtansitions.Push(transition.Node);
-                        }
-                    }
-                else
-                    notNullTransitions = notNullTransitions.Concat(transitions).ToList();
+            foreach(var currPair in newTransitions)
+            {
+                var currNode = currPair.Key;
+                var currTransitions = currPair.Value;
+                List<Node> replaceableNodes = new();
+
+                newTransitions.Where(x => x.Key != currNode && x.Value.SequenceEqual(currTransitions))
+                              .ToList().ForEach(x => replaceableNodes.Add(x.Key));
+
+                if (replaceableNodes.Count == 0)
+                    continue;
+
+                foreach(var newPair in newTransitions)
+                {
+                    var forReplace = newPair.Value.Where(x => replaceableNodes.Contains(x.Node));
+                    foreach (var replace in forReplace)
+                        replace.Node = currNode;
+                }
+            }
         }
+
+        private static List<NodeTransition> GetTransitions(List<Node> nodes)
+        {
+            List<NodeTransition> transitions = new();
+            foreach(var node in nodes)
+            {
+                var currResult = node.To.Where(transition => transition.Out != "");
+                transitions = transitions.Concat(currResult).ToList();
+            }
+            transitions.Sort((a, b) => a.Out.CompareTo(b.Out));
+            return transitions;
+        }
+
+        private static List<Node> GetNullNodes(Node node)
+        {
+            List<Node> newNodes = new() { node };
+            Stack<Node> nodesStack = new(newNodes);
+            while(nodesStack.Count > 0)
+            {
+                var currNode = nodesStack.Pop();
+                var currResult = currNode.To.Where(transition => transition.Out == "");
+                foreach(var transition in currResult)
+                {
+                    if(newNodes.IndexOf(transition.Node) == -1)
+                    {
+                        nodesStack.Push(transition.Node);
+                        newNodes.Add(transition.Node);
+                        if (transition.Node.IsEnd)
+                            node.IsEnd = true;
+                    }
+                }
+            }
+
+            return newNodes;
+        }
+
         private static Node ParseToNode(string regex)
         {
             Queue<Node> Nodes = new();
@@ -393,14 +419,15 @@ namespace Regex
         public bool IsStart;
         public bool IsEnd;
 
-        public Node(List<NodeTransition> to, bool isStart, bool isEnd)
+        public Node(List<NodeTransition> to, bool isStart, bool isEnd, int id = -1)
         {
             To = to;
             IsStart = isStart;
             IsEnd = isEnd;
+            Id = id;
         }
 
-        public Node(bool isStart, bool isEnd)
+        public Node(bool isStart, bool isEnd, int id = -1)
         {
             IsStart = isStart;
             IsEnd = isEnd;
