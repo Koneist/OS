@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "5sP8EdgWzkSxJZbdfkMXghizLzLEP/L/BzQuYmW5ZqzH+SVQYxOiMdmJUGyjA4vCdP6D1u5Nr5T2oxutKSigrA==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\OS\\Lexer\\Lexer\\Lexer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Egor\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}

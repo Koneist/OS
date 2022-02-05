@@ -75,7 +75,7 @@ namespace Regex
                 newTransitions.Add(node, GetTransitions(nullNodes));
             }
 
-            MinimizeStates(newTransitions);
+            //MinimizeStates(newTransitions);
 
             foreach (var node in newTransitions)
                 node.Key.To = node.Value;

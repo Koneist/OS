@@ -1,0 +1,16 @@
+D:\Projects\ood\Determinizer\Determinizer\bin\Debug\net5.0\Determinizer.exe
+D:\Projects\ood\Determinizer\Determinizer\bin\Debug\net5.0\Determinizer.deps.json
+D:\Projects\ood\Determinizer\Determinizer\bin\Debug\net5.0\Determinizer.runtimeconfig.json
+D:\Projects\ood\Determinizer\Determinizer\bin\Debug\net5.0\Determinizer.runtimeconfig.dev.json
+D:\Projects\ood\Determinizer\Determinizer\bin\Debug\net5.0\Determinizer.dll
+D:\Projects\ood\Determinizer\Determinizer\bin\Debug\net5.0\ref\Determinizer.dll
+D:\Projects\ood\Determinizer\Determinizer\bin\Debug\net5.0\Determinizer.pdb
+D:\Projects\ood\Determinizer\Determinizer\obj\Debug\net5.0\Determinizer.csproj.AssemblyReference.cache
+D:\Projects\ood\Determinizer\Determinizer\obj\Debug\net5.0\Determinizer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\ood\Determinizer\Determinizer\obj\Debug\net5.0\Determinizer.AssemblyInfoInputs.cache
+D:\Projects\ood\Determinizer\Determinizer\obj\Debug\net5.0\Determinizer.AssemblyInfo.cs
+D:\Projects\ood\Determinizer\Determinizer\obj\Debug\net5.0\Determinizer.csproj.CoreCompileInputs.cache
+D:\Projects\ood\Determinizer\Determinizer\obj\Debug\net5.0\Determinizer.dll
+D:\Projects\ood\Determinizer\Determinizer\obj\Debug\net5.0\ref\Determinizer.dll
+D:\Projects\ood\Determinizer\Determinizer\obj\Debug\net5.0\Determinizer.pdb
+D:\Projects\ood\Determinizer\Determinizer\obj\Debug\net5.0\Determinizer.genruntimeconfig.cache

@@ -1,0 +1,6 @@
+right
+S->xA
+A->xA|yB
+B->yB|yC
+C->x|yD
+D->yD

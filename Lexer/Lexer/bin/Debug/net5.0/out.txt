@@ -1,0 +1,6 @@
+|public| AccessType: line:1 column:0
+|int| TypeName: line:1 column:7
+|A| Identifier: line:1 column:11
+|=| Unexpected: line:1 column:13
+|14| Number: line:1 column:15
+|;| Semicolon: line:1 column:17

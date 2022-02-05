@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "d7DZJ+cC0Axr+c+W5Vmj9A5S4E5lRvYCHQrR5CF8rm70SI5flton38J+XIvP5iufWu9dREwUCBJUa3e6d/WANA==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\ood\\Determinizer\\Determinizer\\Determinizer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Egor\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}
